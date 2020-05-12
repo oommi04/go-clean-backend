@@ -4,7 +4,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/tkhamsila/backendtest/src/domains/doscg"
 	"github.com/tkhamsila/backendtest/src/domains/doscg/usecase"
-	"github.com/tkhamsila/backendtest/utils/errorStatus"
+	"github.com/tkhamsila/backendtest/src/utils/errorStatus"
 	"net/http"
 )
 
