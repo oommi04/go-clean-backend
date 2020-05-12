@@ -3,7 +3,6 @@ package echoDriver
 import "github.com/labstack/echo"
 
 type GoMiddleware struct {
-
 }
 
 func (m *GoMiddleware) CORS(next echo.HandlerFunc) echo.HandlerFunc {

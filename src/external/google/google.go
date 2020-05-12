@@ -5,11 +5,6 @@ import (
 	"github.com/valyala/fasthttp"
 )
 
-//go:generate mockery -name=Service
-type Service interface {
-	GetDirectionAPI(start string, destination string) (*DirectionResp, error)
-}
-
 type GoogleClient struct {
 	httpClient fastHttpDriver.FastHttpClient
 

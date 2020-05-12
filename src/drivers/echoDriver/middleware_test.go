@@ -8,7 +8,6 @@ import (
 	"github.com/labstack/echo"
 	"github.com/stretchr/testify/assert"
 	"github.com/stretchr/testify/require"
-
 )
 
 func TestCORS(t *testing.T) {

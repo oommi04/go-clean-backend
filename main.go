@@ -3,7 +3,7 @@ package main
 import (
 	"github.com/tkhamsila/backendtest/src/app"
 	"github.com/tkhamsila/backendtest/src/configs"
-	"github.com/tkhamsila/backendtest/src/domains/doscg"
+	doscgHttp "github.com/tkhamsila/backendtest/src/domains/doscg/handler/http"
 )
 
 func main() {
@@ -13,7 +13,9 @@ func main() {
 
 	e := app.SetupHttp(cfg)
 
-	doscg.Init(e, googleClient)
+	lineBot := app.SetupLineBot(cfg)
+
+	doscgHttp.Init(e, googleClient,lineBot)
 
 	e.Logger.Fatal(e.Start(":" + cfg.PORT))
 }

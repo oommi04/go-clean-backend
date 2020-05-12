@@ -3,6 +3,7 @@ package google
 import (
 	"encoding/json"
 	"github.com/stretchr/testify/mock"
+	"github.com/tkhamsila/backendtest/src/domains/doscg"
 	"github.com/valyala/fasthttp"
 	"net/http"
 	"time"
@@ -20,16 +21,16 @@ func (suite *GoogleServiceSuite) TestGoogleClient_directionAPI_Success() {
 		resp := args[1].(*fasthttp.Response)
 		resp.SetStatusCode(http.StatusOK)
 
-		respBody := DirectionResp{Status: "OK",Routes: []*Routes{
+		respBody := doscg.DirectionResp{Status: "OK", Routes: []*doscg.Routes{
 			{
 				Summary: "ทางพิเศษศรีรัช",
-				OverviewPolyline: OverviewPolyline{
+				OverviewPolyline: doscg.OverviewPolyline{
 					Points: "iz{rAeysdRvDZjAFrADVETuBRwB`@yEr@sHn@mGf@sF^uDj@mFl@}FBYsBRyDRaA@oCDc@B_@EMImER{DXiCLqBJuBN_AF_CZsA`@s@XIDYNqAn@q@f@q@r@u@~@m@|@q@lAmAjBc@n@KHo@l@aBdAcChAEBOFk@Pg@ZuBbA_Af@c@Vi@X[VSPCBi@`@{@f@YJs@L_@?c@G}@][WMSYs@GMCY@q@DYDQZs@t@s@`CaBp@a@pBoAv@q@JM\\\\m@Hu@Cq@CUGKSU]a@w@Wa@G[A]Bi@La@JmAl@g@P_Ar@mErD{@p@eA|@{FbFwDjDWX[l@{@hBwBlG}@hBo@lAiAzA}A|Ag@`@aBfAwAv@yBlAu@b@_Ar@_A~@y@dAi@|@KRCBuAxC_ArBwBdFgCrF_@x@ORUf@{@~A_@`@c@\\\\QHWLg@Lk@F}@BOA}@OmCs@aB[UEqAKgACwCJaABgB@gCE_AGiBYy@Se@GUAmCy@cA[qA]qGeBqBo@_@CyEqAgD_AK?S?]DUJUPe@j@QPq@Xe@D[C_@MSOOUKUE]?OFs@ZqAMEMEaAUqDgAmE}A[KqBs@u@QiDcAoDgAcAYy@US?KCI~@KzA_@bDs@pEMnASWyAY}Aa@kCy@sFmBgCu@eBm@{@g@a@YcA_@OG{@]mPwEqK_Dm@MSDs@vA[jAEIKGa@MyCdGANw@xASYa@QSGOTQLW?cBk@Ty@g@Q"}}}}
 		creatorJSON, _ := json.Marshal(respBody)
 		resp.SetBody(creatorJSON)
 	}).Return(nil)
 
-	_, err := suite.service.GetDirectionAPI(centralWorld,scgBangsue)
+	_, err := suite.service.GetDirectionAPI(centralWorld, scgBangsue)
 
 	suite.NoError(err)
 	suite.fastHttp.AssertExpectations(suite.T())
@@ -48,9 +49,9 @@ func (suite *GoogleServiceSuite) TestGoogleClient_directionAPI_Error() {
 		resp.SetStatusCode(http.StatusBadRequest)
 	}).Return(nil)
 
-	_, err := suite.service.GetDirectionAPI(centralWorld,scgBangsue)
+	_, err := suite.service.GetDirectionAPI(centralWorld, scgBangsue)
 
 	suite.Error(err)
-	suite.Equal(ErrorUnableRequestGoogleDirection, err)
+	suite.Equal(doscg.ErrorUnableRequestGoogleDirection, err)
 	suite.fastHttp.AssertExpectations(suite.T())
 }
