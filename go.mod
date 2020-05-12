@@ -3,7 +3,6 @@ module github.com/tkhamsila/backendtest
 go 1.13
 
 require (
-	github.com/avast/retry-go v2.6.0+incompatible
 	github.com/davecgh/go-spew v1.1.1 // indirect
 	github.com/joho/godotenv v1.3.0
 	github.com/labstack/echo v3.3.10+incompatible
