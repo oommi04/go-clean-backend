@@ -33,5 +33,5 @@ var (
 )
 
 var (
-	TimeOutWhenBotAnswerDelay = 3 * time.Second
+	TimeOutWhenBotAnswerDelay = 10 * time.Second
 )
